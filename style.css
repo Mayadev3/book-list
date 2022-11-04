@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display&display=swap");
 * {
   box-sizing: border-box; /*so padding and border doesnt effect the width and height of the element*/
 }
@@ -8,4 +8,9 @@ body {
   margin: 0;
   min-height: 100vh; /* we need to assign a height so the items knows where to center*/
   overflow: hidden; /*so there are no scroll bars visible*/
+  font-family: "Playfair Display", serif;
+}
+h1 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
 }
