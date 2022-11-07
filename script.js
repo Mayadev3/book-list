@@ -20,7 +20,7 @@ UI.prototype.addBookToList = function (book) {
   row.innerHTML = `<td>${book.title}</td>
   <td>${book.author}</td>
   <td>${book.isbn}</td>
-  <td><a href="#">X</a></td>`;
+  <td><a href="#" class="link">X</a></td>`;
   list.appendChild(row);
 };
 
@@ -42,9 +42,12 @@ form.addEventListener("submit", function (e) {
   //instantiate UI
   const ui = new UI();
 
-  //Add Book to List
-  ui.addBookToList(book);
-  ui.clearFields();
+  //validate
+  if (title === "" || author === "" || isbn === "") {
+  } else {
+    ui.addBookToList(book);
+    ui.clearFields();
+  }
 
   /*this is one way to clear fields too
   titleInput.value = "";

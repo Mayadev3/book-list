@@ -7,16 +7,15 @@ body {
   font-family: "Roboto", sand-serif;
   margin: 0;
   min-height: 100vh; /* we need to assign a height so the items knows where to center*/
-  overflow: hidden; /*so there are no scroll bars visible*/
   font-family: "Playfair Display", serif;
 }
 
-.container {
-  margin-top: 40px;
-}
 h1 {
   font-family: "Oswald", sans-serif;
   font-weight: 500;
+}
+.container {
+  margin-top: -250px;
 }
 .success,
 .error {
@@ -38,4 +37,12 @@ h1 {
 }
 #submit:hover {
   background-color: #2972fa;
+}
+.giff {
+  position: relative;
+  left: 40px;
+}
+.planting {
+  text-align: right;
+  margin-top: -300px;
 }
