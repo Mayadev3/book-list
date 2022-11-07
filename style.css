@@ -10,7 +10,32 @@ body {
   overflow: hidden; /*so there are no scroll bars visible*/
   font-family: "Playfair Display", serif;
 }
+
+.container {
+  margin-top: 40px;
+}
 h1 {
   font-family: "Oswald", sans-serif;
   font-weight: 500;
+}
+.success,
+.error {
+  color: white;
+  padding: 5px;
+  margin: 5px 0 15px 0;
+}
+.success {
+  background: green;
+}
+.error {
+  background: red;
+}
+#submit {
+  background-color: #0b42a9;
+  color: white;
+  border: none;
+  margin-top: 7px;
+}
+#submit:hover {
+  background-color: #2972fa;
 }
