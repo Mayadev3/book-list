@@ -20,7 +20,7 @@ UI.prototype.addBookToList = function (book) {
   row.innerHTML = `<td>${book.title}</td>
   <td>${book.author}</td>
   <td>${book.isbn}</td>
-  <td><a href="#" class="link">X</a></td>`;
+  <td><a href="#" class="delete">X</a></td>`;
   list.appendChild(row);
 };
 
@@ -42,6 +42,12 @@ UI.prototype.showAlert = function (message, className) {
     document.querySelector(".alert").remove();
   }, 3000);
 };
+UI.prototype.deleteBook = function (target) {
+  if (target.className === "delete") {
+    target.parentElement.parentElement.remove();
+  }
+};
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   let title = titleInput.value;
@@ -59,12 +65,16 @@ form.addEventListener("submit", function (e) {
     ui.showAlert(`Please fill in all the fields`, `error`); //this is the class error which we created in the style sheet
   } else {
     ui.addBookToList(book);
-    ui.showAlert(`Book Added!`, `success`);
+    ui.showAlert(`Book Added !`, `success`);
     ui.clearFields();
   }
+});
+//event listener for delete item
+//here we will use the parent and delegate downwards to the child
 
-  /*this is one way to clear fields too
-  titleInput.value = "";
-  authorInput.value = "";
-  isbnInput.value = "";*/
+document.getElementById("book-list").addEventListener("click", function (e) {
+  e.preventDefault();
+  const ui = new UI();
+  ui.deleteBook(e.target);
+  ui.showAlert(`Book Deleted !`, `success`);
 });
