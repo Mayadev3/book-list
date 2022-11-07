@@ -29,7 +29,19 @@ UI.prototype.clearFields = function () {
   authorInput.value = "";
   isbnInput.value = "";
 };
+UI.prototype.showAlert = function (message, className) {
+  const div = document.createElement("div");
+  div.className = ` alert ${className}`;
+  div.appendChild(document.createTextNode(message));
 
+  const form = document.getElementById("book-form");
+  const container = document.querySelector(".container");
+  container.insertBefore(div, form);
+
+  setTimeout(function () {
+    document.querySelector(".alert").remove();
+  }, 3000);
+};
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   let title = titleInput.value;
@@ -44,8 +56,10 @@ form.addEventListener("submit", function (e) {
 
   //validate
   if (title === "" || author === "" || isbn === "") {
+    ui.showAlert(`Please fill in all the fields`, `error`); //this is the class error which we created in the style sheet
   } else {
     ui.addBookToList(book);
+    ui.showAlert(`Book Added!`, `success`);
     ui.clearFields();
   }
 

@@ -28,12 +28,14 @@ h1 {
 }
 .error {
   background: red;
+  padding-left: 20px;
 }
 #submit {
   background-color: #0b42a9;
   color: white;
   border: none;
   margin-top: 7px;
+  font-size: 16px;
 }
 #submit:hover {
   background-color: #2972fa;
