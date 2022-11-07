@@ -13,3 +13,15 @@ function Book(title, author, isbn) {
 }
 //UI constructor
 function UI() {}
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  let title = titleInput.value;
+  let author = authorInput.value;
+  let isbn = isbnInput.value;
+
+  //instantiate book
+  const book = new Book(title, author, isbn);
+
+  //instantiate UI
+});
