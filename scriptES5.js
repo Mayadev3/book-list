@@ -24,7 +24,7 @@ function manageData(e) {
   let book = new Book(title, author, isbn);
   let ui = new UI();
 
-  UI.prototype.tableBody = function (book) {
+  UI.prototype.addBookToList = function (book) {
     let row = document.createElement("tr");
     row.innerHTML = `<td>${book.title}</td>
                      <td>${book.author}</td>
@@ -57,7 +57,7 @@ function manageData(e) {
   if (title === "" || author === "" || isbn === "") {
     ui.showAlert(`Please fill in all fields!`, `error`);
   } else {
-    ui.tableBody(book);
+    ui.addBookToList(book);
     ui.clearInput();
     ui.showAlert(`Book Added!`, `success`);
   }
