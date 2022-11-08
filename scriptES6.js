@@ -72,6 +72,7 @@ class Store {
     return books;
   }
   static displayBooks() {
+    //i created this function method to keep the info displayed when after loading
     const books = Store.getBooks();
     books.forEach(function (book) {
       const ui = new UI();
