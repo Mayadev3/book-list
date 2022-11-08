@@ -24,7 +24,7 @@ UI.prototype.addBookToList = function (book) {
   list.appendChild(row);
 };
 
-UI.prototype.clearFields = function () {
+Book.prototype.clearFields = function () {
   titleInput.value = "";
   authorInput.value = "";
   isbnInput.value = "";
@@ -45,6 +45,8 @@ UI.prototype.showAlert = function (message, className) {
 UI.prototype.deleteBook = function (target) {
   if (target.className === "delete") {
     target.parentElement.parentElement.remove();
+    /*here where i am doing the event listener on the table body, everywhere i click fires off, so to target the X
+    I need to target its className*/
   }
 };
 
@@ -66,7 +68,7 @@ form.addEventListener("submit", function (e) {
   } else {
     ui.addBookToList(book);
     ui.showAlert(`Book Added !`, `success`);
-    ui.clearFields();
+    book.clearFields();
   }
 });
 //event listener for delete item
