@@ -1,3 +1,5 @@
+//Book class
+
 class Book {
   constructor(title, author, isbn) {
     this.title = title;
@@ -6,8 +8,11 @@ class Book {
   }
 }
 
+//UI class
+
 class UI {
   addBookToList(book) {
+    /* i dont need a constructor here cause i took everything from Book through book*/
     const list = document.getElementById("book-list");
     // Create tr element
     const row = document.createElement("tr");
@@ -54,6 +59,47 @@ class UI {
     document.getElementById("isbn").value = "";
   }
 }
+//Local Storage class
+
+class Store {
+  static getBooks() {
+    let books;
+    if (localStorage.getItem("books") === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem("books"));
+    }
+    return books;
+  }
+  static displayBooks() {
+    const books = Store.getBooks();
+    books.forEach(function (book) {
+      const ui = new UI();
+      ui.addBookToList(book);
+    });
+  }
+
+  static addBook(book) {
+    const books = Store.getBooks();
+    books.push(book);
+    localStorage.setItem("books", JSON.stringify(books));
+  }
+
+  static removeBook(isbn) {
+    const books = Store.getBooks();
+    books.forEach(function (book, index) {
+      if ((book.isbn = isbn)) {
+        //= to the isbn passed into the method as a parameter
+        books.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem("books", JSON.stringify(books));
+  }
+}
+
+//DOM load event
+document.addEventListener("DOMContentLoaded", Store.displayBooks);
 
 // Event Listener for add book
 document.getElementById("book-form").addEventListener("submit", function (e) {
@@ -77,6 +123,8 @@ document.getElementById("book-form").addEventListener("submit", function (e) {
   } else {
     // Add book to list
     ui.addBookToList(book);
+    //add to local storage
+    Store.addBook(book);
 
     // Show success
     ui.showAlert("Book Added!", "success");
@@ -95,6 +143,8 @@ document.getElementById("book-list").addEventListener("click", function (e) {
 
   // Delete book
   ui.deleteBook(e.target);
+  //remove from local storage
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent); //the parent of the X is the td, and previosu sibling is the td before it which has the isbn as textContent
 
   // Show message
   ui.showAlert("Book Removed!", "success");
